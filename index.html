@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Le système simple pour scaler ton business à +30k€/mois sans pub, sans tunnel, sans bullshit. Accompagnement, méthode, résultats, preuves.">
+<meta property="og:title" content="Flowthup — Portfolio de scaling">
+<meta property="og:description" content="Le système simple pour scaler ton business à +30k€/mois sans pub, sans tunnel, sans bullshit.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/og-image.jpg">
+<title>Flowthup — Portfolio de scaling</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =====================
+     Thème & Reset
+  ====================== */
+  :root{
+    --bg:#0b0f19;           /* fond dark raffiné */
+    --bg-soft:#0f1525;      /* blocs */
+    --card:#10182a;         /* cartes */
+    --glass:rgba(255,255,255,.06);
+    --border:rgba(255,255,255,.08);
+    --text:#e7ecf5;
+    --muted:#9aa7c7;
+    --primary:#5b8dff;      /* bleu */
+    --primary-2:#7ca4ff;    /* bleu clair */
+    --accent:#8b5cf6;       /* violet */
+    --ok:#22c55e;
+    --danger:#ff4d4d;
+    --shadow:0 12px 40px rgba(6,10,20,.35);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img,video{max-width:100%;height:auto}
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* Glow util */
+  .glow{box-shadow:0 0 0 1px var(--border), inset 0 1px 0 rgba(255,255,255,.04), 0 20px 60px rgba(92,127,255,.15)}
+
+  /* =====================
+     Effets génériques
+  ====================== */
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes shine{0%{background-position:-120% 0}100%{background-position:220% 0}}
+
+  /* =====================
+     Nav
+  ====================== */
+  .nav{position:sticky;top:0;z-index:40;background:rgba(10,14,25,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav-in{display:flex;align-items:center;gap:18px;padding:14px 0}
+  .brand{display:flex;gap:10px;align-items:center;margin-left:6px}
+  .mark{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:conic-gradient(from 200deg at 60% 40%, #5b8dff 0 25%, #8b5cf6 0 55%, #5b8dff 0)}
+  .brand b{font-weight:800}
+  .sub{font-size:12px;color:var(--muted);margin-left:8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));font-weight:700;cursor:pointer;transition:transform .15s, box-shadow .15s}
+  .btn.primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:0}
+  .btn.big{height:52px;padding:0 22px;border-radius:14px}
+  .btn:active{transform:scale(.98)}
+
+  /* =====================
+     Hero
+  ====================== */
+  .hero{padding:72px 0 56px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .title{font-size:48px;font-weight:800;margin:0 0 14px;line-height:1.08;background:linear-gradient(90deg,#e7ecf5 40%, var(--primary) 60%, var(--accent) 100%);background-size:220% auto;color:#111;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px rgba(124,164,255,0.10)) drop-shadow(0 2px 8px rgba(139,92,246,0.08));}
+  .blue{color:var(--primary)}
+  .subtitle{font-size:18px;color:var(--muted);margin:0 0 22px;font-weight:600;max-width:340px;padding:0 12px;box-sizing:border-box;display:block;margin-left:auto;margin-right:auto;text-align:center}
+
+  /* =====================
+     Sections
+  ====================== */
+  section{animation:fadeInUp .6s both}
+  .logic h2, .vendeur h2, .faq-title, .slider-title, .accompagnement h2, .scaling-blocs h2, .comment-accompagne h2, .pourquoi-maintenant h2{
+  font-size:34px;font-weight:800;margin:0 0 28px;text-align:center;max-width:600px;word-break:break-word;overflow-wrap:break-word;margin-left:auto;margin-right:auto;white-space:normal;
+  }
+  .logic-box,.vendeur-box{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+  .card{border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));box-shadow:var(--shadow);font-size:16px}
+  .card strong{font-weight:800}
+
+  /* Accompagnement (6 cartes) */
+  .accompagnement-cartes{padding:80px 0 40px 0;background:linear-gradient(180deg, rgba(91,141,255,.08), transparent 40%)}
+  .label{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(124,164,255,.12);color:#dfe7ff;border:1px solid var(--border);font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:1000px;margin:0 auto}
+
+  /* Blocages */
+  .blocages .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015))}
+
+  /* 5 blocs de scaling */
+  .scaling-blocs .grid{grid-template-columns:repeat(5,1fr);gap:18px;max-width:1200px}
+  .scaling-blocs .badge{position:absolute;top:16px;right:16px;background:rgba(124,164,255,.18);color:#dfe7ff;font-weight:800;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
+
+  /* Comment on t'accompagne + garantie */
+  .garantie{background:linear-gradient(180deg,rgba(139,92,246,.18),rgba(124,164,255,.15));border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center;box-shadow:var(--shadow)}
+
+  /* Pour qui */
+  .pour-qui .box{flex:1;border-radius:var(--radius);padding:28px}
+  .pour-qui .ok{background:rgba(34,197,94,.09)}
+  .pour-qui .no{background:rgba(255,77,77,.08)}
+
+  /* FAQ */
+  .faq-section{padding:80px 0;background:linear-gradient(180deg, transparent, rgba(139,92,246,.06))}
+  .faq-q{font-weight:800;font-size:18px;margin:20px 0 10px;cursor:pointer;display:flex;align-items:center;gap:10px}
+  .faq-a{font-size:16px;color:#d0d7ea;margin-bottom:16px;display:none}
+  .faq-q.open + .faq-a{display:block}
+
+  /* Slider */
+  .slider-section{padding:80px 0}
+  .slider{max-width:760px;margin:0 auto;position:relative}
+  .slide{display:none;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;text-align:center;font-size:18px;color:var(--text);min-height:140px}
+  .slide.active{display:block;animation:fadeInUp .6s}
+  .slide-author{margin-top:16px;font-weight:700;color:#dfe7ff;font-size:15px}
+  .slider-nav{display:flex;justify-content:center;gap:10px;margin-top:16px}
+  .slider-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.22);cursor:pointer;transition:transform .15s}
+  .slider-dot.active{background:linear-gradient(135deg,var(--primary),var(--accent))}
+  .slider-dot:active{transform:scale(.9)}
+
+  /* Bandeau d'urgence */
+  .bandeau-urgence{background:linear-gradient(90deg,rgba(255,77,77,.18) 0%,rgba(255,140,140,.08) 100%);color:#ffd0d0;font-weight:800;text-align:center;padding:14px 0;font-size:16px;border-bottom:1px solid var(--border);letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:10px}
+
+  /* CTA sticky */
+  .sticky-cta{position:fixed;bottom:20px;right:20px;z-index:1000;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-weight:800;font-size:16px;border:none;border-radius:14px;padding:16px 26px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s}
+  .sticky-cta:hover{transform:translateY(-2px)}
+
+  /* WhatsApp float */
+  .whatsapp-float{position:fixed;bottom:90px;right:22px;z-index:1001;background:#25d366;color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+
+  /* Booking widget (reprend ton code, restylé dark sans changer le texte) */
+  .booking-widget-container{position:fixed;bottom:24px;right:24px;z-index:1002;transition:opacity .25s, visibility .25s}
+  .booking-widget-hidden{opacity:0;pointer-events:none;visibility:hidden}
+  .booking-widget{width:350px;background:rgba(16,24,40,.85);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px 18px 14px 18px;display:flex;flex-direction:column;gap:10px}
+  .booking-header{display:flex;align-items:center;gap:12px}
+  .booking-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.18)}
+  .booking-name{font-weight:800;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:6px}
+  .booking-status{width:10px;height:10px;background:var(--ok);border-radius:50%;display:inline-block;margin-left:2px}
+  .booking-role{font-size:.95rem;color:#c4cbe1;font-weight:500}
+  .booking-title{font-size:1.06rem;font-weight:800;color:#fff;margin-top:6px}
+  .booking-desc{color:#b6c0dc;font-size:.95rem;margin-bottom:6px}
+  .booking-dates{display:flex;gap:10px;margin-bottom:8px}
+  .booking-date{background:rgba(255,255,255,.06);border-radius:10px;padding:8px 12px;font-size:.95rem;color:#fff;text-align:center;font-weight:700;cursor:pointer;border:2px solid transparent;transition:border .2s, background .2s}
+  .booking-date-active{border:2px solid var(--primary);background:rgba(91,141,255,.12);color:#dfe7ff}
+  .booking-btn{width:100%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-weight:900;font-size:1rem;border:none;border-radius:12px;padding:12px 0;margin-top:8px;margin-bottom:6px;cursor:pointer;box-shadow:0 8px 30px rgba(91,141,255,.25),0 0 12px 2px rgba(91,141,255,0.25);transition:transform .15s;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+  .booking-btn::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    background:linear-gradient(120deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.18) 50%,rgba(255,255,255,0) 100%);
+    opacity:0.7;
+    pointer-events:none;
+    z-index:1;
+    background-size:200% 100%;
+    animation:shine 2.8s linear infinite;
+  }
+  .booking-btn span, .booking-btn strong, .booking-btn em, .booking-btn b {
+    position:relative;
+    z-index:2;
+  }
+  .booking-btn:hover{transform:translateY(-1px)}
+  .booking-powered{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;color:#9fb0d8;font-size:.9rem;margin-top:4px}
+  .booking-iclsd{font-size:1.05em;color:#b6c0dc}
+  .booking-iclsd-txt{font-size:1em;color:#b6c0dc;font-weight:700}
+
+  /* Mobile tweaks */
+  :root{--safe: env(safe-area-inset-bottom, 0px)}
+  @media (max-width: 1024px){.container{padding:0 16px}.nav-in{padding:12px 0}}
+  @media (max-width: 900px){.title{font-size:42px}}
+  @media (max-width: 600px){
+    .logic h2, .vendeur h2, .faq-title, .slider-title, .accompagnement h2, .scaling-blocs h2, .comment-accompagne h2, .pourquoi-maintenant h2{
+      font-size:22px;
+      padding:0 8px;
+    }
+  }
+  @media (max-width: 768px){
+    .nav-in{display:grid;grid-template-columns:1fr;row-gap:8px}
+    .hero{padding:48px 0 28px}
+    .title{font-size:32px;line-height:1.2}
+    .subtitle{font-size:16px}
+    .btn.big{height:48px}
+    .grid{grid-template-columns:1fr;gap:14px}
+    .scaling-blocs .grid{grid-template-columns:1fr}
+    .pour-qui .container{flex-direction:column;gap:16px}
+    body{padding-bottom:calc(88px + var(--safe))}
+    .sticky-cta{left:16px;right:16px;bottom:calc(16px + var(--safe));width:auto}
+    .whatsapp-float{right:16px;bottom:calc(84px + var(--safe))}
+    .booking-widget-container{left:16px;right:16px;bottom:calc(84px + var(--safe))}
+    .booking-widget{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-in" style="position:relative;">
+  <div class="brand"><div class="mark"></div><b style="background: linear-gradient(90deg, #e7ecf5 40%, var(--primary) 60%, var(--accent) 100%);background-size: 220% auto;color: #111;background-clip: text;-webkit-background-clip: text;-webkit-text-fill-color: transparent;filter:drop-shadow(0 0 10px rgba(124,164,255,0.13)) drop-shadow(0 2px 8px rgba(139,92,246,0.09));">Flowthup</b><span class="sub">Portfolio de scaling</span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero container">
+  <h1 class="title" style="padding-left:18px;padding-right:18px;">Le système <span class="blue">simple</span> pour passer de <span class="blue">3k€ à 15k€/mois</span> sur ton business</h1>
+  <div style="max-width:520px;margin:0 auto;">
+    <p class="subtitle"><b>SANS</b> avoir une grosse audience ou investir 1 euro en ads</p>
+  </div>
+  <a class="btn big primary glow" href="https://calendly.com/flowthup/scaling" target="_blank" rel="noopener">Réserver ma consultation</a>
+</section>
+
+<!-- SECTION LOGIQUE -->
+<section class="logic" style="padding:70px 0 30px 0;">
+  <div class="container">
+  <h2 style="text-align:center">Pourquoi ce modèle est <span class="blue">logique</span>&nbsp;:</h2>
+    <div class="logic-box glow" style="max-width:420px;margin:0 auto;">
+      <ul style="font-size:15px;line-height:1.5;margin:0 0 14px 0;padding-left:18px">
+  <li>Tu vends une offre à <b>900€</b></li>
+        <li>Tu bookes <b>20 appels qualifiés</b> par semaine</li>
+        <li>Tu closes à seulement <b>20%</b> → 4 ventes/semaine</li>
+      </ul>
+      <div class="glow" style="background:rgba(91,141,255,.12);border:1px solid var(--border);border-radius:12px;padding:10px 12px;text-align:center;font-size:16px;font-weight:800;color:#fff;margin-top:6px;">
+    4 ventes × 900€ = <span class="blue">3 600€/semaine</span> → <span class="blue">14 400€/mois</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMPAGNEMENT CARTES -->
+<section class="accompagnement-cartes">
+  <div class="container">
+    <div style="text-align:center"><span class="label glow">Flowthup</span></div>
+  <h2 style="text-align:center">Un accompagnement de <span class="blue">4 mois</span> pour t’aider à&nbsp;:</h2>
+    <div class="grid">
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:14px">
+        <span class="icon" aria-label="Cible"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><circle cx="12" cy="12" r="6" stroke="#7ca4ff" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#7ca4ff"/></svg></span>
+        <div><strong>Transformer ton offre</strong><br><span style="color:var(--muted)">pour qu’elle vende sans toi, en masse et à plus cher</span></div>
+      </div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:14px">
+        <span class="icon" aria-label="Utilisateurs"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="8" cy="10" r="3" stroke="#7ca4ff" stroke-width="2"/><circle cx="16" cy="10" r="3" stroke="#7ca4ff" stroke-width="2"/><path d="M2 20c0-2.2 3.6-4 8-4s8 1.8 8 4" stroke="#7ca4ff" stroke-width="2"/><path d="M12 20c0-1.1 1.8-2 4-2s4 .9 4 2" stroke="#7ca4ff" stroke-width="2"/></svg></span>
+        <div><strong>Générer 5 à 8 appels qualifiés par jour</strong><br><span style="color:var(--muted)">avec une stratégie organique personnalisée</span></div>
+      </div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:14px">
+        <span class="icon" aria-label="Horloge"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 7v5l4 2" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <div><strong>Recruter un setter</strong><br><span style="color:var(--muted)">payé au résultat pour booker les calls à ta place</span></div>
+      </div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:14px">
+        <span class="icon" aria-label="Graphique"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><rect x="3" y="12" width="4" height="8" rx="2" fill="#7ca4ff"/><rect x="10" y="8" width="4" height="12" rx="2" fill="#7ca4ff"/><rect x="17" y="4" width="4" height="16" rx="2" fill="#7ca4ff"/></svg></span>
+        <div><strong>Déléguer les ventes</strong><br><span style="color:var(--muted)">sans perdre en closing rate</span></div>
+      </div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:14px">
+        <span class="icon" aria-label="Bouclier"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 3l8 4v5c0 5.5-3.8 10.7-8 12-4.2-1.3-8-6.5-8-12V7l8-4z" stroke="#7ca4ff" stroke-width="2" fill="rgba(124,164,255,.18)"/></svg></span>
+        <div><strong>SOP, IA et automatisations</strong><br><span style="color:var(--muted)">pour te sortir de l'opérationnel</span></div>
+      </div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:14px">
+        <span class="icon" aria-label="Étoile"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><polygon points="12,3 15,10 22,10 17,15 18,22 12,18 6,22 7,15 2,10 9,10" stroke="#7ca4ff" stroke-width="2" fill="rgba(124,164,255,.18)"/></svg></span>
+        <div><strong>Recruter une team LEAN</strong><br><span style="color:var(--muted)">efficace tout en gardant beaucoup de profit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCAGES -->
+<section class="blocages" style="padding:40px 0 30px 0;">
+  <div class="container">
+  <h2 style="text-align:center">Pourquoi tu <span class="blue">bloques</span> aujourd'hui&nbsp;:</h2>
+    <div class="grid" style="max-width:900px">
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:10px"><span class="icon" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><rect x="11" y="10" width="2" height="6" rx="1" fill="#7ca4ff"/><rect x="11" y="7" width="2" height="2" rx="1" fill="#7ca4ff"/></svg></span> Ton acquisition n'est pas régulière</div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:10px"><span class="icon" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><rect x="11" y="10" width="2" height="6" rx="1" fill="#7ca4ff"/><rect x="11" y="7" width="2" height="2" rx="1" fill="#7ca4ff"/></svg></span> Tu t'épuises à closer toi-même chaque appel</div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:10px"><span class="icon" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><rect x="11" y="10" width="2" height="6" rx="1" fill="#7ca4ff"/><rect x="11" y="7" width="2" height="2" rx="1" fill="#7ca4ff"/></svg></span> Tu veux recruter mais tu sais pas qui / comment / quand</div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:10px"><span class="icon" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><rect x="11" y="10" width="2" height="6" rx="1" fill="#7ca4ff"/><rect x="11" y="7" width="2" height="2" rx="1" fill="#7ca4ff"/></svg></span> Tu veux scaler, mais tu sais pas sur quoi te concentrer</div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:10px"><span class="icon" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><rect x="11" y="10" width="2" height="6" rx="1" fill="#7ca4ff"/><rect x="11" y="7" width="2" height="2" rx="1" fill="#7ca4ff"/></svg></span> Tu te sens seul, mal conseillé ou perdu au milieu de toutes les stratégies</div>
+      <div class="card glow" style="display:flex;align-items:flex-start;gap:10px"><span class="icon" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><rect x="11" y="10" width="2" height="6" rx="1" fill="#7ca4ff"/><rect x="11" y="7" width="2" height="2" rx="1" fill="#7ca4ff"/></svg></span> <span>Tu n'as pas besoin de plus d'infos. Tu as besoin d'un plan clair, et d'une équipe qui t'aide à l'exécuter.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION VENDEUR (déplacée ici) -->
+<section class="vendeur" style="padding:70px 0;background:linear-gradient(180deg, transparent, rgba(92,127,255,.08))">
+  <div class="container">
+    <h2>Tu n’as pas besoin de devenir un <span class="blue">vendeur</span></h2>
+    <p class="sub" style="text-align:center;color:var(--muted);font-size:18px;margin-bottom:28px">Tu dois devenir quelqu’un qui aide à <b>prendre des décisions</b>.</p>
+    <div class="vendeur-box glow">
+      <p>Les gens ne sont pas idiots. Ils savent qu’ils doivent investir pour résoudre un problème. Mais ils n’ont pas encore pris leur décision.</p>
+      <b>Ce qui les bloque :</b>
+      <ul style="margin:12px 0;padding-left:18px">
+        <li>Pas sûr que ça marche pour eux</li>
+        <li>Peur de refaire une erreur</li>
+        <li>Pas encore vu un système qui leur paraît simple, cohérent, et exécutable</li>
+      </ul>
+      <div class="highlight glow" style="background:rgba(124,164,255,.12);border:1px solid var(--border);border-radius:12px;padding:14px 12px;margin-top:14px;text-align:center;font-weight:800">Notre rôle c’est de t’amener à une seule question :<br><span class="blue">Est-ce que je veux atteindre mes objectifs avec ce système, maintenant ?</span></div>
+    </div>
+    <p class="vendeur-foot" style="text-align:center;color:var(--muted);margin-top:18px">Tu n’as pas besoin d’être convaincu. Tu as juste besoin d’une méthode claire, de résultats visibles, et d’un partenaire qui te guide step by step.</p>
+  </div>
+</section>
+
+<!-- 5 BLOCS DE SCALING -->
+<section class="scaling-blocs" style="padding:70px 0 30px 0;">
+  <div class="container">
+  <h2>Les <span class="blue">5 blocs de scaling</span> qu'on installe avec toi&nbsp;:</h2>
+    <div class="grid">
+      <div class="card glow" style="position:relative">
+        <div class="badge">1</div>
+        <div style="color:#dfe7ff;font-size:20px;font-weight:800;">Offre</div>
+        <div style="margin:10px 0 0 0;">On transforme ton offre pour qu'elle vende sans toi, en masse et à plus cher</div>
+        <ul style="color:var(--muted);font-size:15px;margin:16px 0 0 0;padding-left:18px;">
+          <li>Hybridation (DWY + DFY) pour augmenter ta valeur perçue</li>
+          <li>Structuration autour d'un angle de scaling</li>
+        </ul>
+      </div>
+      <div class="card glow" style="position:relative">
+        <div class="badge">2</div>
+        <div style="color:#dfe7ff;font-size:20px;font-weight:800;">Acquisition</div>
+        <div style="margin:10px 0 0 0;">Stratégie de contenu organique = 0€ en ads</div>
+        <ul style="color:var(--muted);font-size:15px;margin:16px 0 0 0;padding-left:18px;">
+          <li>Système de lead flow quotidien sans tunnel</li>
+          <li>Recrutement d'un setter qui envoie des centaines de messages qualifiés par jour</li>
+          <li>Deal gagnant-gagnant : il ne touche que s'il génère du cash</li>
+        </ul>
+      </div>
+      <div class="card glow" style="position:relative">
+        <div class="badge">3</div>
+        <div style="color:#dfe7ff;font-size:20px;font-weight:800;">Sales</div>
+        <div style="margin:10px 0 0 0;">Script haute conversion</div>
+        <ul style="color:var(--muted);font-size:15px;margin:16px 0 0 0;padding-left:18px;">
+          <li>Mise en place de ton pôle closing (toi ou closer)</li>
+          <li>Suivi des metrics (no-show, closing rate, cash par call...)</li>
+        </ul>
+      </div>
+      <div class="card glow" style="position:relative">
+        <div class="badge">4</div>
+        <div style="color:#dfe7ff;font-size:20px;font-weight:800;">Opérations</div>
+        <div style="margin:10px 0 0 0;">SOPs, automatisations, IA, onboarding client simplifié</div>
+        <ul style="color:var(--muted);font-size:15px;margin:16px 0 0 0;padding-left:18px;">
+          <li>Délivrabilité standardisée mais personnalisée</li>
+          <li>Sortie progressive du delivery pour le CEO</li>
+        </ul>
+      </div>
+      <div class="card glow" style="position:relative">
+        <div class="badge">5</div>
+        <div style="color:#dfe7ff;font-size:20px;font-weight:800;">Team</div>
+        <div style="margin:10px 0 0 0;">Recrutement lean team</div>
+        <ul style="color:var(--muted);font-size:15px;margin:16px 0 0 0;padding-left:18px;">
+          <li>Juste les bons profils : setter, closer, assistant, coach</li>
+          <li>Objectif : 80% de marge</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ON T'ACCOMPAGNE + GARANTIE -->
+<section class="comment-accompagne" style="padding:70px 0 30px 0;">
+  <div class="container">
+  <h2 style="white-space:normal;">Comment on <span class="blue">t'accompagne</span>&nbsp;:</h2>
+    <div class="grid" style="max-width:1000px">
+      <div class="card glow" style="display:flex;gap:14px;align-items:flex-start">
+        <span class="icon" aria-label="Cible"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><circle cx="12" cy="12" r="6" stroke="#7ca4ff" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#7ca4ff"/></svg></span>
+        <div><strong>Plateforme privée</strong><br><span style="color:var(--muted)">Des centaines d'heures de vidéos, templates, SOPs, updates, case studies. Pas une formation. Un cockpit.</span></div>
+      </div>
+      <div class="card glow" style="display:flex;gap:14px;align-items:flex-start">
+        <span class="icon" aria-label="Groupe"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><ellipse cx="8" cy="10" rx="4" ry="4" fill="#7ca4ff"/><ellipse cx="16" cy="10" rx="4" ry="4" fill="#7ca4ff" opacity=".5"/><rect x="2" y="16" width="20" height="4" rx="2" fill="#7ca4ff" opacity=".2"/></svg></span>
+        <div><strong>Accès 7/7 à 6 consultants experts</strong><br><span style="color:var(--muted)">Marketing, copywriting, sales, data, ads, opérations. De 8h à minuit.</span></div>
+      </div>
+      <div class="card glow" style="display:flex;gap:14px;align-items:flex-start">
+        <span class="icon" aria-label="Horloge"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 7v5l4 2" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <div><strong>Roadmap personnalisée</strong><br><span style="color:var(--muted)">On passe ton business au scalpel, et on te donne un plan clair, semaine par semaine.</span></div>
+      </div>
+      <div class="card glow" style="display:flex;gap:14px;align-items:flex-start">
+        <span class="icon" aria-label="Etoile"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9" fill="#ffd700" stroke="#7ca4ff" stroke-width="1.5"/></svg></span>
+        <div><strong>4 types d'appels par semaine</strong><br><span style="color:var(--muted)">2 appels de groupe avec Matis<br>1 appel d'avancement hebdo avec un expert<br>1 workshop en micro-groupe (2-3 personnes)</span></div>
+      </div>
+    </div>
+    <div class="garantie glow" style="margin-top:34px">
+      <div style="font-size:34px">🛡️</div>
+      <div style="font-size:20px;font-weight:800;margin:8px 0 6px 0;">Garantie contractuelle</div>
+      <div style="font-size:18px;font-weight:700;">10k€ de profit. <span style="font-weight:500;">Sinon, on continue gratuitement jusqu'à ce que ce soit atteint.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI C'EST / PAS -->
+<section class="pour-qui" style="padding:70px 0 30px 0;">
+  <div class="container" style="display:flex;gap:24px;max-width:1200px;justify-content:center;">
+    <div class="box ok glow">
+      <div style="font-size:24px;font-weight:800;color:#8dffb3;display:flex;align-items:center;gap:10px;">✅ Pour qui c'est :</div>
+      <ul style="color:#fff;font-size:18px;margin:18px 0 0 0;padding-left:0;list-style:none;">
+        <li style="margin-bottom:12px;">✔️ Tu fais entre 5k et 20k€/mois</li>
+        <li style="margin-bottom:12px;">✔️ Tu veux un système simple pour booker 5–8 leads qualifiés / jour</li>
+        <li style="margin-bottom:12px;">✔️ Tu veux scaler sans tunnel, sans pub, sans bullshit</li>
+        <li style="margin-bottom:12px;">✔️ Tu veux poser des bases solides pour aller à 50k – 100k – 200k€/mois ensuite</li>
+      </ul>
+    </div>
+    <div class="box no glow">
+      <div style="font-size:24px;font-weight:800;color:#ffc2c2;display:flex;align-items:center;gap:10px;">❌ Pour qui ce n'est pas :</div>
+      <ul style="color:#fff;font-size:18px;margin:18px 0 0 0;padding-left:0;list-style:none;">
+        <li style="margin-bottom:12px;">❌ Tu débutes dans le business</li>
+        <li style="margin-bottom:12px;">❌ Tu veux vendre un e-book à 49€</li>
+        <li style="margin-bottom:12px;">❌ Tu veux un hack, pas un système</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI MAINTENANT -->
+<section class="pourquoi-maintenant" style="padding:70px 0 30px 0;">
+  <div class="container">
+  <h2>Pourquoi <span class="blue">maintenant</span>&nbsp;:</h2>
+    <div class="glow" style="background:linear-gradient(90deg,rgba(255,77,77,.15) 0%,rgba(255,140,140,.06) 100%);border-radius:var(--radius);padding:28px;max-width:900px;margin:0 auto;border-left:6px solid var(--danger);">
+      <div style="color:#ffd0d0;font-weight:800;font-size:18px;display:flex;align-items:center;gap:10px;"><span style="font-size:22px;">●</span> URGENT</div>
+      <div style="font-size:20px;font-weight:800;margin:14px 0 10px 0;">Chaque jour que tu passes sans les bonnes stratégies…</div>
+      <ul style="color:#fff;font-size:18px;margin:0 0 16px 0;padding-left:0;list-style:none;">
+        <li style="margin-bottom:8px;">💸 C'est de l'argent qui part chez tes concurrents</li>
+        <li style="margin-bottom:8px;">🪪 C'est ton business qui stagne pendant que d'autres explosent</li>
+        <li style="margin-bottom:8px;">⏰ C'est du temps perdu à bricoler au lieu de scaler</li>
+      </ul>
+      <div class="glow" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:16px;font-weight:700;color:#fff;display:inline-block;">
+        <span style="color:#ffd0d0;">Pendant que tu hésites</span>, nos membres ajoutent <span class="blue">+30k à +50k€/mois</span> à leur CA.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="faq-title">FAQ — Questions fréquentes</h2>
+    <div class="faq-list">
+      <div class="faq-q"><span class="icon" aria-label="Question"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 17h.01" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/><path d="M12 13a2 2 0 1 1 2-2c0 1.1-.9 2-2 2z" stroke="#7ca4ff" stroke-width="2"/></svg></span>Est-ce que ça marche si je n’ai pas d’audience ?</div>
+      <div class="faq-a">Oui, la méthode est conçue pour fonctionner même sans audience existante. L’accompagnement t’aide à générer des leads qualifiés de façon organique.</div>
+      <div class="faq-q"><span class="icon" aria-label="Question"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 17h.01" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/><path d="M12 13a2 2 0 1 1 2-2c0 1.1-.9 2-2 2z" stroke="#7ca4ff" stroke-width="2"/></svg></span>Combien de temps avant d’avoir des résultats ?</div>
+      <div class="faq-a">La plupart des membres voient des résultats concrets en 2 à 6 semaines, selon leur implication et leur secteur.</div>
+      <div class="faq-q"><span class="icon" aria-label="Question"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 17h.01" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/><path d="M12 13a2 2 0 1 1 2-2c0 1.1-.9 2-2 2z" stroke="#7ca4ff" stroke-width="2"/></svg></span>Dois-je déjà avoir une équipe ?</div>
+      <div class="faq-a">Non, tu peux démarrer seul. On t’aide à structurer et à recruter au bon moment.</div>
+      <div class="faq-q"><span class="icon" aria-label="Question"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 17h.01" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/><path d="M12 13a2 2 0 1 1 2-2c0 1.1-.9 2-2 2z" stroke="#7ca4ff" stroke-width="2"/></svg></span>Est-ce adapté à mon secteur ?</div>
+      <div class="faq-a">La méthode s’adapte à tous les business de service, coaching, consulting, agence, B2B/B2C premium.</div>
+      <div class="faq-q"><span class="icon" aria-label="Question"><svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#7ca4ff" stroke-width="2"/><path d="M12 17h.01" stroke="#7ca4ff" stroke-width="2" stroke-linecap="round"/><path d="M12 13a2 2 0 1 1 2-2c0 1.1-.9 2-2 2z" stroke="#7ca4ff" stroke-width="2"/></svg></span>Y a-t-il une garantie ?</div>
+      <div class="faq-a">Oui, tu es accompagné jusqu’à 10k€ de profit, sinon on continue gratuitement jusqu’à ce que ce soit atteint.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDER TEMOIGNAGES -->
+<section class="slider-section">
+  <div class="container">
+    <h2 class="slider-title">Success Stories</h2>
+    <div class="slider" id="slider">
+      <div class="slide active">« J’ai fait 30k€ de plus en 2 mois grâce à la méthode. Simple, efficace, et un vrai accompagnement. »<div class="slide-author">— Sarah, Coach business</div></div>
+      <div class="slide">« J’ai enfin pu déléguer la vente et me concentrer sur la croissance. Résultats visibles dès le 1er mois. »<div class="slide-author">— Julien, Agence marketing</div></div>
+      <div class="slide">« Le système m’a permis de structurer mon offre et de recruter sans stress. Je recommande à 100%. »<div class="slide-author">— Amélie, Consultante RH</div></div>
+    </div>
+    <div class="slider-nav" id="slider-nav">
+      <div class="slider-dot active" aria-label="témoignage 1"></div>
+      <div class="slider-dot" aria-label="témoignage 2"></div>
+      <div class="slider-dot" aria-label="témoignage 3"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Bouton WhatsApp -->
+
+<!-- CTA sticky -->
+
+<!-- Booking toggle btn -->
+<button id="booking-toggle-btn" class="btn primary glow" style="position:fixed;bottom:24px;left:24px;z-index:1003;display:flex;align-items:center;gap:8px;box-shadow:0 0 16px 2px rgba(124,164,255,0.18),0 2px 8px rgba(139,92,246,0.10);">
+  <span style="font-weight:800">Ouvrir l’instant booking</span>
+</button>
+
+<!-- Booking widget -->
+<div id="booking-widget-container" class="booking-widget-container booking-widget-hidden" aria-hidden="true">
+  <div class="booking-widget" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+    <div class="booking-header">
+      <img class="booking-avatar" src="https://i.pravatar.cc/96?img=12" alt="Conseiller Flowthup">
+      <div>
+        <div class="booking-name">Conseiller Flowthup <span class="booking-status" aria-label="en ligne"></span></div>
+        <div class="booking-role">Réservation express (15 min)</div>
+      </div>
+    </div>
+    <div id="booking-title" class="booking-title">Choisis ton créneau</div>
+    <div class="booking-desc">Temps moyen de réponse &lt; 5 min. Confirmation immédiate.</div>
+    <div class="booking-dates">
+      <div class="booking-date booking-date-active">Aujourd’hui</div>
+      <div class="booking-date">Demain</div>
+      <div class="booking-date">Cette semaine</div>
+    </div>
+  <a class="booking-btn" href="https://calendly.com/flowthup/scaling" target="_blank" rel="noopener">Réserver ma consultation</a>
+    <div class="booking-powered"><span class="booking-iclsd">⚡</span><span class="booking-iclsd-txt">Instant Booking</span></div>
+  </div>
+</div>
+
+<!-- Slider & FAQ JS + Booking JS -->
+<script>
+  // FAQ toggle (garde le comportement + accessibilité)
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.setAttribute('role','button');
+    q.setAttribute('tabindex','0');
+    q.addEventListener('click', () => q.classList.toggle('open'));
+    q.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); q.click(); }});
+  });
+
+  // Slider témoignages
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slider-dot');
+  let current = 0;
+  function showSlide(idx){
+    slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+  }
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>{current=i;showSlide(i);}));
+  setInterval(()=>{current=(current+1)%slides.length;showSlide(current);},6000);
+
+  // Booking widget toggle (reprend ta logique mais robuste au DOM prêt)
+  (function(){
+    const bookingWidget = document.getElementById('booking-widget-container');
+    const bookingToggleBtn = document.getElementById('booking-toggle-btn');
+    if(!bookingWidget || !bookingToggleBtn) return;
+    // hide on load
+    bookingWidget.classList.add('booking-widget-hidden');
+    bookingWidget.style.display='none';
+    bookingToggleBtn.addEventListener('click',()=>{
+      bookingWidget.classList.remove('booking-widget-hidden');
+      bookingWidget.style.display='block';
+      bookingWidget.setAttribute('aria-hidden','false');
+      bookingToggleBtn.style.display='none';
+    });
+    bookingWidget.addEventListener('click',(e)=>{
+      if(e.target===bookingWidget){
+        bookingWidget.classList.add('booking-widget-hidden');
+        bookingWidget.style.display='none';
+        bookingWidget.setAttribute('aria-hidden','true');
+        bookingToggleBtn.style.display='flex';
+      }
+    });
+    document.addEventListener('keydown',(e)=>{
+      if(e.key==='Escape' && !bookingWidget.classList.contains('booking-widget-hidden')){
+        bookingWidget.classList.add('booking-widget-hidden');
+        bookingWidget.style.display='none';
+        bookingWidget.setAttribute('aria-hidden','true');
+        bookingToggleBtn.style.display='flex';
+      }
+    });
+    // dates active
+    document.querySelectorAll('.booking-date').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.booking-date').forEach(b=>b.classList.remove('booking-date-active'));
+        btn.classList.add('booking-date-active');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
